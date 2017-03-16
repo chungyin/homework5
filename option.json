@@ -1,0 +1,76 @@
+{
+    "title": {
+        "text": "從未結婚人口比例"
+    },
+    "tooltip": {
+        "trigger": "axis"
+    },
+    "toolbox": {
+        "feature": {
+            "saveAsImage": {}
+        }
+    },
+    "legend": {
+        "data": ["2006", "2011", "2016"],
+        "align": "left",
+        "top": 20,
+        "left": 10
+    },
+    "grid": {
+        "left": "3%",
+        "right": "4%",
+        "bottom": "3%",
+        "containLabel": true
+    },
+    "xAxis": [{
+        "type": "category",
+        "data": [
+            27,
+            32,
+            37,
+            42,
+            47,
+            52
+        ],
+        "axisTick": {
+            "alignWithLabel": true
+        }
+    }],
+    "yAxis": [{
+        "type": "value"
+    }],
+    "series": [{
+        "name": "2006",
+        "type": "line",
+        "data": [
+            81.4,
+            49.5,
+            29.2,
+            18.2,
+            9.9,
+            5.5
+        ]
+    }, {
+        "name": "2011",
+        "type": "line",
+        "data": [
+            82.6,
+            50,
+            28.8,
+            20.9,
+            14.2,
+            5.8
+        ]
+    }, {
+        "name": "2016",
+        "type": "line",
+        "data": [
+            83.1,
+            49.4,
+            28.7,
+            20.3,
+            16,
+            7.7
+        ]
+    }]
+}

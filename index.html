@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <title>Week7_ECharts</title>
+    <script src="echarts.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1200px;height:800px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '從未結婚人口比例'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['2006', '2011', '2016']
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                data: ['25歲', '30歲', '35歲', '40歲', '45歲', '50歲', '...']
+            }],
+            yAxis: [{
+                type: 'value'
+            }],
+            series: [{
+                    name: '2006',
+                    type: 'line',
+                    stack: 'total',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: [81.4, 49.5, 29.2, 18.2, 9.9, 5.5, 0]
+                }, {
+                    name: '2011',
+                    type: 'line',
+                    stack: 'total',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: [82.6, 50, 28.8, 20.9, 14.2, 5.8, 0]
+                }, {
+                    name: '2016',
+                    type: 'line',
+                    stack: 'total',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: [83.1, 49.4, 28.7, 20.3, 16, 7.7, 0]
+                },
+
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    <div id="main1" style="width: 1200px;height:800px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['商科', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            },
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value: 335,
+                    name: '商科'
+                }, {
+                    value: 310,
+                    name: '邮件营销'
+                }, {
+                    value: 234,
+                    name: '联盟广告'
+                }, {
+                    value: 135,
+                    name: '视频广告'
+                }, {
+                    value: 1548,
+                    name: '搜索引擎'
+                }]
+            }]
+        };
+
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
