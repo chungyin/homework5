@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Week7_ECharts</title>
+    <title>Homework 8</title>
     <script src="echarts.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="map.js"></script>
 </head>
 
 <body>
+    <h1>香港3月16日空氣質素</h1>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 1200px;height:800px;"></div>
     <script type="text/javascript">
@@ -18,123 +20,301 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '從未結婚人口比例'
+                text: '3月16日污染物濃度',
+                subtext: '中西區'
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
-                data: ['2006', '2011', '2016']
+                data: ['NO2 二氧化氮', 'O3 臭氧', 'SO2 二氧化硫', 'PM10 可吸入懸浮粒子', 'PM2.5 細顆粒物']
             },
             toolbox: {
+                show: true,
                 feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {
+                        readOnly: false
+                    },
+                    magicType: {
+                        type: ['line', 'bar']
+                    },
+                    restore: {},
                     saveAsImage: {}
                 }
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [{
+            xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['25歲', '30歲', '35歲', '40歲', '45歲', '50歲', '...']
-            }],
-            yAxis: [{
-                type: 'value'
-            }],
-            series: [{
-                    name: '2006',
-                    type: 'line',
-                    stack: 'total',
-                    areaStyle: {
-                        normal: {}
-                    },
-                    data: [81.4, 49.5, 29.2, 18.2, 9.9, 5.5, 0]
-                }, {
-                    name: '2011',
-                    type: 'line',
-                    stack: 'total',
-                    areaStyle: {
-                        normal: {}
-                    },
-                    data: [82.6, 50, 28.8, 20.9, 14.2, 5.8, 0]
-                }, {
-                    name: '2016',
-                    type: 'line',
-                    stack: 'total',
-                    areaStyle: {
-                        normal: {}
-                    },
-                    data: [83.1, 49.4, 28.7, 20.3, 16, 7.7, 0]
-                },
-
-            ]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    </script>
-    <div id="main1" style="width: 1200px;height:800px;"></div>
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main1'));
-
-        // 指定图表的配置项和数据
-        var option = {
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
             },
-            legend: {
-                orient: 'vertical',
-                x: 'left',
-                data: ['商科', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} mg/m3'
+                }
             },
             series: [{
-                name: '访问来源',
-                type: 'pie',
-                radius: ['50%', '70%'],
-                avoidLabelOverlap: false,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontSize: '30',
-                            fontWeight: 'bold'
-                        }
-                    }
+                name: 'NO2 二氧化氮',
+                type: 'line',
+                data: [32.5, 24.7, 16.8, 13.2, 14.3, 14.6, 17, 26.6, 44.2, 62.6, 61.5, 54.1, 43, 43.9, 42.2, 49.5, 59, 65, 60, 64.1, 60.1, 48.5, 45.7, 34],
+                markPoint: {
+                    data: [{
+                        type: 'max',
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        name: '最小值'
+                    }]
                 },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: '平均值'
+                    }]
+                }
+            }, {
+                name: 'SO2 二氧化硫',
+                type: 'line',
+                data: [8.6, 7.9, 6.5, 6.7, 7.3, 7.5, 7.1, 7.2, 8.2, 10, 10.6, 9.8, 8.1, 9, 9.7, 8.3, 7.3, 6.8, 7.3, 7.3, 7.7, 7.6, 7.4, 7.1],
+                markPoint: {
+                    data: [{
+                        type: 'max',
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        name: '最小值'
+                    }]
                 },
-                data: [{
-                    value: 335,
-                    name: '商科'
-                }, {
-                    value: 310,
-                    name: '邮件营销'
-                }, {
-                    value: 234,
-                    name: '联盟广告'
-                }, {
-                    value: 135,
-                    name: '视频广告'
-                }, {
-                    value: 1548,
-                    name: '搜索引擎'
-                }]
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: '平均值'
+                    }]
+                }
+            }, {
+                name: 'PM10 可吸入懸浮粒子',
+                type: 'line',
+                data: [48.8, 44, 38.6, 34.9, 34.3, 34.4, 39.8, 43.1, 42.7, 49.9, 54.3, 53.7, 50.9, 47.6, 51.7, 56.1, 52.8, 47.8, 45.1, 48.4, 47.1, 51.3, 54.8, 56.5],
+                markPoint: {
+                    data: [{
+                        type: 'max',
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        name: '最小值'
+                    }]
+                },
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: '平均值'
+                    }]
+                }
+            }, {
+                name: 'PM2.5 細顆粒物',
+                type: 'line',
+                data: [27.7, 24.7, 20.9, 18.6, 19.6, 19.3, 23.2, 26.1, 25.7, 31.2, 32.5, 31.1, 30, 28.4, 33.5, 39, 36.4, 34.4, 30.4, 32.8, 32.4, 34, 36.1, 37.5],
+                markPoint: {
+                    data: [{
+                        type: 'max',
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        name: '最小值'
+                    }]
+                },
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: '平均值'
+                    }]
+                }
+            }, {
+                name: 'O3 臭氧',
+                type: 'line',
+                data: [91.6, 96.1, 99.1, 100.4, 98.5, 97.3, 93.2, 80.9, 63.8, 44.9, 48.2, 57.1, 69.5, 73.5, 75.7, 49.5, 66, 63.3, 65.3, 59.7, 59.6, 66.9, 61.6, 66.5],
+                markPoint: {
+                    data: [{
+                        name: '周最低',
+                        value: -2,
+                        xAxis: 1,
+                        yAxis: -1.5
+                    }]
+                },
+                markLine: {
+                    data: [{
+                            type: 'average',
+                            name: '平均值'
+                        },
+                        [{
+                            symbol: 'none',
+                            x: '90%',
+                            yAxis: 'max'
+                        }, {
+                            symbol: 'circle',
+                            label: {
+                                normal: {
+                                    position: 'start',
+                                    formatter: '最大值'
+                                }
+                            },
+                            type: 'max',
+                            name: '最高点'
+                        }]
+                    ]
+                }
             }]
         };
 
         myChart.setOption(option);
+    </script>
+
+    <div id="mymap" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('mymap'));
+        option = {
+            title: {
+                text: '3月16日空氣污染指數',
+                subtext: '',
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}<br/>{c} (p / km2)'
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',
+                x: 'right',
+                y: 'center',
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            dataRange: {
+                min: 0,
+                max: 5,
+                text: ['High', 'Low'],
+                realtime: false,
+                calculable: true,
+                color: ['orangered', 'yellow', 'lightskyblue']
+            },
+            geo: {
+                map: "GeoJSON",
+                roam: true,
+                center: [
+                    117068,
+                    22834
+                ],
+                zoom: 1,
+                scaleLimit: {
+                    min: 1,
+                    max: 3
+                }
+            },
+            series: [{
+                name: '香港18区人口密度',
+                type: 'map',
+                geoIndex: 0,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    }
+                },
+                data: [{
+                    name: '中西区',
+                    value: 5
+                }, {
+                    name: '荃湾区',
+                    value: 4
+                }, {
+                    name: '东区',
+                    value: 4
+                }, {
+                    name: '南区',
+                    value: 5
+                }, {
+                    name: '油尖旺区',
+                    value: 4
+                }, {
+                    name: '深水埗区',
+                    value: 4
+                }, {
+                    name: '观塘区',
+                    value: 4
+                }, {
+                    name: '葵青区',
+                    value: 4
+                }, {
+                    name: '元朗区',
+                    value: 4
+                }, {
+                    name: '屯门区',
+                    value: 4
+                }, {
+                    name: '大埔区',
+                    value: 4
+                }, {
+                    name: '沙田区',
+                    value: 4
+                }, {
+                    name: '西贡区',
+                    value: 5
+                }, {
+                    name: '离岛区',
+                    value: 4
+                }],
+                // 自定义名称映射
+                nameMap: {
+                    'Central and Western': '中西区',
+                    'Eastern': '东区',
+                    'Islands': '离岛区',
+                    'Kwai Tsing': '葵青区',
+                    'Kwun Tong': '观塘区',
+                    'Sai Kung': '西贡区',
+                    'Sha Tin': '沙田区',
+                    'Sham Shui Po': '深水埗区',
+                    'Southern': '南区',
+                    'Tai Po': '大埔区',
+                    'Tsuen Wan': '荃湾区',
+                    'Tuen Mun': '屯门区',
+                    'Wan Chai': '湾仔区',
+                    'Yau Tsim Mong': '油尖旺区',
+                    'Yuen Long': '元朗区'
+                },
+                // 文本位置修正
+                textFixed: {
+                    'Yau Tsim Mong': [-10, 0]
+                },
+                // 文本直接经纬度定位
+                geoCoord: {
+                    'Islands': [113.95, 22.26]
+                }
+            }]
+        };
+        myChart.setOption(option, true);
     </script>
 </body>
 
