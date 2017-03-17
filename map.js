@@ -1,7 +1,7 @@
 geoJSON = {
     "type": "FeatureCollection",
     "features": [{
-        "id": "130000",
+        "id": "810003",
         "geometry": {
             "type": "MultiPolygon",
             "coordinates": [
@@ -15,7 +15,7 @@ geoJSON = {
                 ]
             ]
         },
-        "properties": { "cp": [114.502461, 38.045474], "name": "河北", "childNum": 3 }
+        "properties": { "name": "东区", "cp": [114.225965, 22.279779], "childNum": 1 },
     }, {
         "id": "140000",
         "geometry": {
