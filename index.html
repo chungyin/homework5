@@ -28,166 +28,22 @@
     </div>
     <h1>香港3月16日空氣質素</h1>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 1200px;height:800px;"></div>
+    <div id="main" style="width: 800px;height:533px;"></div>
     <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        $(function() {
 
-        // 指定图表的配置项和数据
-        var option = {
-            title: {
-                text: '3月16日污染物濃度',
-                subtext: '中西區'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['NO2 二氧化氮', 'O3 臭氧', 'SO2 二氧化硫', 'PM10 可吸入懸浮粒子', 'PM2.5 細顆粒物']
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    dataZoom: {
-                        yAxisIndex: 'none'
-                    },
-                    dataView: {
-                        readOnly: false
-                    },
-                    magicType: {
-                        type: ['line', 'bar']
-                    },
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
-            },
-            yAxis: {
-                type: 'value',
-                axisLabel: {
-                    formatter: '{value} mg/m3'
-                }
-            },
-            series: [{
-                name: 'NO2 二氧化氮',
-                type: 'line',
-                data: [32.5, 24.7, 16.8, 13.2, 14.3, 14.6, 17, 26.6, 44.2, 62.6, 61.5, 54.1, 43, 43.9, 42.2, 49.5, 59, 65, 60, 64.1, 60.1, 48.5, 45.7, 34],
-                markPoint: {
-                    data: [{
-                        type: 'max',
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '平均值'
-                    }]
-                }
-            }, {
-                name: 'SO2 二氧化硫',
-                type: 'line',
-                data: [8.6, 7.9, 6.5, 6.7, 7.3, 7.5, 7.1, 7.2, 8.2, 10, 10.6, 9.8, 8.1, 9, 9.7, 8.3, 7.3, 6.8, 7.3, 7.3, 7.7, 7.6, 7.4, 7.1],
-                markPoint: {
-                    data: [{
-                        type: 'max',
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '平均值'
-                    }]
-                }
-            }, {
-                name: 'PM10 可吸入懸浮粒子',
-                type: 'line',
-                data: [48.8, 44, 38.6, 34.9, 34.3, 34.4, 39.8, 43.1, 42.7, 49.9, 54.3, 53.7, 50.9, 47.6, 51.7, 56.1, 52.8, 47.8, 45.1, 48.4, 47.1, 51.3, 54.8, 56.5],
-                markPoint: {
-                    data: [{
-                        type: 'max',
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '平均值'
-                    }]
-                }
-            }, {
-                name: 'PM2.5 細顆粒物',
-                type: 'line',
-                data: [27.7, 24.7, 20.9, 18.6, 19.6, 19.3, 23.2, 26.1, 25.7, 31.2, 32.5, 31.1, 30, 28.4, 33.5, 39, 36.4, 34.4, 30.4, 32.8, 32.4, 34, 36.1, 37.5],
-                markPoint: {
-                    data: [{
-                        type: 'max',
-                        name: '最大值'
-                    }, {
-                        type: 'min',
-                        name: '最小值'
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '平均值'
-                    }]
-                }
-            }, {
-                name: 'O3 臭氧',
-                type: 'line',
-                data: [91.6, 96.1, 99.1, 100.4, 98.5, 97.3, 93.2, 80.9, 63.8, 44.9, 48.2, 57.1, 69.5, 73.5, 75.7, 49.5, 66, 63.3, 65.3, 59.7, 59.6, 66.9, 61.6, 66.5],
-                markPoint: {
-                    data: [{
-                        name: '周最低',
-                        value: -2,
-                        xAxis: 1,
-                        yAxis: -1.5
-                    }]
-                },
-                markLine: {
-                    data: [{
-                            type: 'average',
-                            name: '平均值'
-                        },
-                        [{
-                            symbol: 'none',
-                            x: '90%',
-                            yAxis: 'max'
-                        }, {
-                            symbol: 'circle',
-                            label: {
-                                normal: {
-                                    position: 'start',
-                                    formatter: '最大值'
-                                }
-                            },
-                            type: 'max',
-                            name: '最高点'
-                        }]
-                    ]
-                }
-            }]
-        };
-
-        myChart.setOption(option);
+            $.getJSON("option.json", function(data) {
+                console.log(data);
+                var myChart = echarts.init(document.getElementById('main'));
+                var option = data;
+                myChart.setOption(option);
+            })
+        });
     </script>
 
+    <div style="color:black; background-color: white; text-align: left; padding: 10px 10px 10px 10px;"> 空氣質素健康指數是以4種空氣污染物，即臭氧、二氧化氮、二氧化硫和粒子(可吸入懸浮粒子/微細懸浮粒子)]的3小時移動平均濃度所引起的累積健康風險作為計算基礎。從以上圖表可看到於今年3月6日於中西區監察站錄得的污染物濃度。 可見臭氧濃度最高，二氧化硫最低。
+        <br> 為監察香港各區空氣質素健康指數，環保署在各區皆設空氣質素監測站，分別位於中西區、東區、觀塘、深水埗 、葵涌 、荃灣 、將軍澳 、元朗 、屯門 、東涌 、大埔 、沙田 、塔門、 銅鑼灣 中環、 旺角。以下為2013年首週空氣質素健康指數。表中可見銅鑼灣、中環及旺角3地，位於鬧市之中，空氣質素較差。
+    </div>
     <h1>香港2013年3月首週空氣質素健康指數</h1>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div class="chart" style="width: 1200px;height:800px;"></div>
@@ -341,12 +197,14 @@
             ]
         });
         // 为echarts对象加载数据
-        myChart.setOption(option);
     </script>
+
     <footer class="footer" style="background-color: white; color: gray;text-align: left">
         <div class="container">
             <p class="text-muted">Jour2106 Data Visualizing for news
-                <br>source@<a href=" http://www.aqhi.gov.hk/api_history/download/hourly/eng/hr032013.csv">過去空氣質素健康指數記錄（英文）2013年3月</a> and <a href="  http://www.aqhi.gov.hk/epd/ddata/html/out/24pc_Eng.xml">過去24小時各個空氣質素監測站的污染物濃度（英文）</a></p>
+                <br>source@<a href=" http://www.aqhi.gov.hk/api_history/download/hourly/eng/hr032013.csv">過去空氣質素健康指數記錄（英文）2013年3月</a> and <a href="  http://www.aqhi.gov.hk/epd/ddata/html/out/24pc_Eng.xml">過去24小時各個空氣質素監測站的污染物濃度（英文）</a>
+                <br>code reference: <a href="http://codepen.io/HelloLeeChan/pen/wGJpmp">echarts & codepen</a></p>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </body>
